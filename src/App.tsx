@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./routes/Home";
 import EventParticipantsPage from "./routes/EventParticipantsPage";
+import EventRegistrationPage from "./routes/EventRegistrationPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           path="events/:id/participants"
           element={<EventParticipantsPage />}
         />
+        <Route path="events/:id/register" element={<EventRegistrationPage />} />
       </Routes>
       {/* <Home /> */}
     </>
