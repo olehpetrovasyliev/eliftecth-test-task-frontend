@@ -37,7 +37,7 @@ export interface ParticipantRes extends Participant {
   _id: string;
 }
 
-export interface EventDetailedRes extends Event {
+export interface EventDetailedRes extends EventRes {
   participants: ParticipantRes[];
 }
 

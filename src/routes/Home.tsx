@@ -54,6 +54,8 @@ const Home = () => {
   return (
     <section className="home">
       <div className="home__wrapper">
+        <h1>Events</h1>
+
         <div className="home__sortControls">
           <select onChange={handleSortByChange} value={sortBy}>
             <option value="event_date">Sort by Date</option>
