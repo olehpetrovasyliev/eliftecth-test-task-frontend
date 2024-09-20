@@ -14,7 +14,6 @@ const EventParticipantsPage = () => {
         try {
           const { data } = await getEventById(id);
           setEvent(data);
-          console.log(data); // Check if data is coming in correctly
         } catch (error) {
           console.error("Error fetching event:", error);
         }

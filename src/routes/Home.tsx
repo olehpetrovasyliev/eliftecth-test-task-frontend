@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EventsList from "../components/eventsList/EventsList";
 import { getAllEvents } from "../helpers/api";
+import Select from "react-select";
 import { EventRes, SortBy, SortDirection } from "../helpers/types";
 
 const Home = () => {
@@ -35,18 +36,27 @@ const Home = () => {
     }
   }, [page, sortBy, sortDirection]);
 
+  const sortByOptions = [
+    { value: "event_date", label: "Sort by Date" },
+    { value: "title", label: "Sort by Name" },
+    { value: "organizer", label: "Sort by Organizer" },
+  ];
+
+  const sortDirectionOptions = [
+    { value: "inc", label: "Ascending" },
+    { value: "desc", label: "Descending" },
+  ];
+
   const loadMore = () => setPage((prev) => prev + 1);
 
-  const handleSortByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(event.target.value as SortBy);
+  const handleSortByChange = (selectedOption: any) => {
+    setSortBy(selectedOption.value);
     setEvents([]);
     setPage(1);
   };
 
-  const handleSortDirectionChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setSortDirection(event.target.value as SortDirection);
+  const handleSortDirectionChange = (selectedOption: any) => {
+    setSortDirection(selectedOption.value);
     setEvents([]);
     setPage(1);
   };
@@ -57,15 +67,20 @@ const Home = () => {
         <h1>Events</h1>
 
         <div className="home__sortControls">
-          <select onChange={handleSortByChange} value={sortBy}>
-            <option value="event_date">Sort by Date</option>
-            <option value="title">Sort by Name</option>
-            <option value="organizer">Sort by Organizer</option>
-          </select>
-          <select onChange={handleSortDirectionChange} value={sortDirection}>
-            <option value="inc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
+          <Select
+            options={sortByOptions}
+            value={sortByOptions.find((option) => option.value === sortBy)}
+            onChange={handleSortByChange}
+            placeholder="Sort by..."
+          />
+          <Select
+            options={sortDirectionOptions}
+            value={sortDirectionOptions.find(
+              (option) => option.value === sortDirection
+            )}
+            onChange={handleSortDirectionChange}
+            placeholder="Sort direction..."
+          />
         </div>
         <EventsList list={events} />
         {hasMore && <button onClick={loadMore}>more</button>}
