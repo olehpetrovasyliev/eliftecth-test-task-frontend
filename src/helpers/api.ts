@@ -11,9 +11,9 @@ import {
 const instance = axios.create({ baseURL: BASE_URL });
 
 export const getAllEvents = async (
-  params: PaginatedReqParams
+  params?: PaginatedReqParams
 ): Promise<AxiosResponse<ApiPaginatedRes<EventRes>>> =>
-  await instance.get("/", { params });
+  await instance.get("/events", { params });
 
 export const getEventById = async (
   id: string

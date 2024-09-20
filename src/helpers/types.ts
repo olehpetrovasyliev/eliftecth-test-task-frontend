@@ -7,6 +7,7 @@ export interface ApiPaginatedRes<T> {
 
 export interface PaginatedReqParams {
   page?: number;
+  limit?: number;
   perPage?: number;
   sortBy?: SortBy;
   sortDirection?: SortDirection;
@@ -40,6 +41,6 @@ export interface EventDetailedRes extends Event {
   participants: ParticipantRes[];
 }
 
-type SortDirection = "desc" | "inc";
+export type SortDirection = "desc" | "inc";
 
-type SortBy = "event_date" | "title" | "organizer";
+export type SortBy = "event_date" | "title" | "organizer";
