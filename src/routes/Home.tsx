@@ -64,7 +64,7 @@ const Home = () => {
   return (
     <section className="home">
       <div className="home__wrapper">
-        <h1>Events</h1>
+        <h1 className="home__title">Events</h1>
 
         <div className="home__sortControls">
           <Select
@@ -83,7 +83,11 @@ const Home = () => {
           />
         </div>
         <EventsList list={events} />
-        {hasMore && <button onClick={loadMore}>more</button>}
+        {hasMore && (
+          <button onClick={loadMore} className="home__btn-loadmore">
+            more
+          </button>
+        )}
       </div>
     </section>
   );

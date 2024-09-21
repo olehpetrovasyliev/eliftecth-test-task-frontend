@@ -1,0 +1,66 @@
+@import "../mixins";
+@import "../variables";
+
+.home {
+  background-color: $card-bg;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 40px 0;
+  box-shadow: 0 4px 8px $box-shadow-light;
+
+  &__wrapper {
+    @include container;
+  }
+
+  &__title {
+    font-size: $font-size-large;
+    color: $text-color-dark;
+    margin-bottom: 20px;
+  }
+
+  &__sortControls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .react-select {
+      width: 48%;
+    }
+  }
+  .eventsList {
+    display: grid;
+    gap: 20px;
+
+    grid-template-columns: 100%;
+
+    @media only screen and (min-width: $breakpoint-mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media only screen and (min-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media only screen and (min-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media only screen and (min-width: $breakpoint-huge) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  &__btn-loadmore {
+    background-color: $primary-color;
+    color: white;
+    padding: $button-padding;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px $box-shadow-light;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin: 24px auto 0;
+
+    &:hover {
+      background-color: $primary-hover;
+      box-shadow: 0 4px 8px $box-shadow-hover;
+    }
+  }
+}

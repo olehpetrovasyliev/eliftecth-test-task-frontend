@@ -3,16 +3,28 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { ParticipantInput } from "../helpers/types";
 import { addParticipantToEvent } from "../helpers/api";
+import { Value } from "sass";
 
 const EventRegistrationPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { register, handleSubmit } = useForm<ParticipantInput>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ParticipantInput>();
+
+  const validateAge = (value: any) => {
+    const today = new Date();
+    const BirthDate = new Date(value);
+
+    const age = today.getFullYear() - BirthDate.getFullYear();
+    return age;
+  };
 
   const onSubmit = async (data: ParticipantInput) => {
     if (id) {
+      //   await addParticipantToEvent(id, data);
       console.log(data);
-
-      await addParticipantToEvent(id, data);
     } else {
       console.error("Event ID is undefined");
     }
@@ -27,8 +39,13 @@ const EventRegistrationPage = () => {
             Name:
             <input
               type="text"
-              {...register("name", { required: "Name is requires" })}
+              {...register("name", {
+                required: "Name is required",
+                minLength: 2,
+                maxLength: 100,
+              })}
             />
+            {errors.name && <span>{errors.name.message}</span>}
           </label>
           <label>
             Email:
@@ -36,6 +53,7 @@ const EventRegistrationPage = () => {
               type="email"
               {...register("email", { required: "Email is required" })}
             />
+            {errors.email && <span>{errors.email.message}</span>}
           </label>
           <label>
             Date of birth:
@@ -43,8 +61,17 @@ const EventRegistrationPage = () => {
               type="date"
               {...register("date_of_birth", {
                 required: "Date of birth is required",
+                validate: {
+                  ageLimit: (value) =>
+                    validateAge(value) >= 18 && validateAge(Value) <= 100
+                      ? true
+                      : "You must be older than 18",
+                },
               })}
             />
+            {errors.date_of_birth && (
+              <span>{errors.date_of_birth.message}</span>
+            )}
           </label>
           <label>
             Friend:
@@ -55,6 +82,9 @@ const EventRegistrationPage = () => {
                 required: "Please select how you heard about us",
               })}
             />
+            {errors.heard_about_us && (
+              <span>{errors.heard_about_us.message}</span>
+            )}
           </label>
           <label>
             Social Media:
