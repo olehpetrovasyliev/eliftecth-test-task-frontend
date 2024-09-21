@@ -85,7 +85,7 @@ const Home = () => {
         <EventsList list={events} />
         {hasMore && (
           <button onClick={loadMore} className="home__btn-loadmore">
-            more
+            Load More
           </button>
         )}
       </div>

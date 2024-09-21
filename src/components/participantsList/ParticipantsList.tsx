@@ -6,7 +6,7 @@ type ParticipantsListProps = { list: ParticipantRes[] };
 
 const ParticipantsList: FC<ParticipantsListProps> = ({ list }) => {
   return (
-    <ul className="eventsList">
+    <ul className="participantsList">
       {list.map((participant) => (
         <ParticipantCard participant={participant} key={participant._id} />
       ))}

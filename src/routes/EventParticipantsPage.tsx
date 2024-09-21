@@ -28,9 +28,11 @@ const EventParticipantsPage = () => {
   }
 
   return (
-    <section>
-      <h1 className="eventPage__title">{event.title}</h1>
-      <ParticipantsList list={event.participants} />
+    <section className="eventPage">
+      <div className="eventPage__wrapper">
+        <h1 className="eventPage__title">{event.title}</h1>
+        <ParticipantsList list={event.participants} />
+      </div>
     </section>
   );
 };

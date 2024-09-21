@@ -23,8 +23,7 @@ const EventRegistrationPage = () => {
 
   const onSubmit = async (data: ParticipantInput) => {
     if (id) {
-      //   await addParticipantToEvent(id, data);
-      console.log(data);
+      await addParticipantToEvent(id, data);
     } else {
       console.error("Event ID is undefined");
     }

@@ -1,0 +1,42 @@
+.eventPage {
+  padding: 40px 0;
+
+  &__wrapper {
+    background-color: $card-bg;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    @include container;
+    padding: 20px;
+    box-shadow: 0 4px 8px $box-shadow-light;
+  }
+
+  &__title {
+    font-size: $font-size-large;
+    color: $text-color-dark;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .participantsList {
+    display: grid;
+    gap: 20px;
+
+    grid-template-columns: 100%;
+
+    @media only screen and (min-width: $breakpoint-mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media only screen and (min-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media only screen and (min-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media only screen and (min-width: $breakpoint-huge) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+}
