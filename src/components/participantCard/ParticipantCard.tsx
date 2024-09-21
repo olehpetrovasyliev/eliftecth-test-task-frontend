@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { EventRes, ParticipantRes } from "../../helpers/types";
+import { ParticipantRes } from "../../helpers/types";
 
 interface ParticipantCardProps {
   participant: ParticipantRes;

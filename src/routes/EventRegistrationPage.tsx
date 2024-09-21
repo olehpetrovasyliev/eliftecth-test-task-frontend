@@ -15,9 +15,17 @@ const EventRegistrationPage = () => {
 
   const validateAge = (value: any) => {
     const today = new Date();
-    const BirthDate = new Date(value);
+    const birthDate = new Date(value);
 
-    const age = today.getFullYear() - BirthDate.getFullYear();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+
+    if (
+      monthDifference < 0 ||
+      (monthDifference === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      return age - 1;
+    }
     return age;
   };
 
@@ -61,10 +69,11 @@ const EventRegistrationPage = () => {
               {...register("date_of_birth", {
                 required: "Date of birth is required",
                 validate: {
-                  ageLimit: (value) =>
-                    validateAge(value) >= 18 && validateAge(Value) <= 100
-                      ? true
-                      : "You must be older than 18",
+                  ageLimit: (value) => {
+                    const age = validateAge(value);
+                    console.log("Calculated Age:", age);
+                    return age >= 18 ? true : "You must be older than 18";
+                  },
                 },
               })}
             />
