@@ -81,6 +81,9 @@ const EventRegistrationPage = () => {
               <span>{errors.date_of_birth.message}</span>
             )}
           </label>
+          <span className="eventRegistration__heared">
+            How`d you heard about us?
+          </span>
           <label>
             Friend:
             <input
