@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { ParticipantInput } from "../helpers/types";
 import { addParticipantToEvent } from "../helpers/api";
 import { Value } from "sass";
+import { toast } from "react-toastify";
 
 const EventRegistrationPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -32,6 +33,7 @@ const EventRegistrationPage = () => {
   const onSubmit = async (data: ParticipantInput) => {
     if (id) {
       await addParticipantToEvent(id, data);
+      toast("Registration succesfull");
     } else {
       console.error("Event ID is undefined");
     }
@@ -71,7 +73,6 @@ const EventRegistrationPage = () => {
                 validate: {
                   ageLimit: (value) => {
                     const age = validateAge(value);
-                    console.log("Calculated Age:", age);
                     return age >= 18 ? true : "You must be older than 18";
                   },
                 },
