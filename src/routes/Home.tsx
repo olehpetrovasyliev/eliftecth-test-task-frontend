@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import EventsList from "../components/eventsList/EventsList";
 import { getAllEvents } from "../helpers/api";
 import Select from "react-select";
 import { EventRes, SortBy, SortDirection } from "../helpers/types";
 
-const Home = () => {
+const Home: FC = () => {
   const [events, setEvents] = useState<EventRes[] | []>([]);
   const [page, setPage] = useState<number>(1);
   const [sortBy, setSortBy] = useState<SortBy>("event_date");

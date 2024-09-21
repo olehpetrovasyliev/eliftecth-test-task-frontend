@@ -1,12 +1,12 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { ParticipantInput } from "../helpers/types";
 import { addParticipantToEvent } from "../helpers/api";
 import { Value } from "sass";
 import { toast } from "react-toastify";
+import { FC } from "react";
 
-const EventRegistrationPage = () => {
+const EventRegistrationPage:FC = () => {
   const { id } = useParams<{ id: string }>();
   const {
     register,

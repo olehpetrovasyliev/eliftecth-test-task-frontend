@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { EventDetailedRes } from "../helpers/types";
 import { useParams } from "react-router-dom";
 import { getEventById } from "../helpers/api";
 import ParticipantsList from "../components/participantsList/ParticipantsList";
 
-const EventParticipantsPage = () => {
+const EventParticipantsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const [event, setEvent] = useState<EventDetailedRes | null>(null);
 
