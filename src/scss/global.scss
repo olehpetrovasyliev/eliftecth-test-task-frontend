@@ -1,0 +1,31 @@
+@import "variables";
+@import "mixins";
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  font-family: "Arial", sans-serif;
+}
+body {
+  line-height: 1.5;
+  color: $text-color-dark;
+  background-color: #f4f4f4;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: $breakpoint-mobile) {
+  body {
+    font-size: 14px;
+  }
+}

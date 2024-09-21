@@ -7,13 +7,14 @@ import { EventRes, SortBy, SortDirection } from "../helpers/types";
 const Home = () => {
   const [events, setEvents] = useState<EventRes[] | []>([]);
   const [page, setPage] = useState<number>(1);
-
   const [sortBy, setSortBy] = useState<SortBy>("event_date");
   const [sortDirection, setSortDirection] = useState<SortDirection>("inc");
   const [hasMore, setHasMore] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchEventsData = async () => {
+      setLoading(true);
       try {
         const { data } = await getAllEvents({
           page,
@@ -28,6 +29,8 @@ const Home = () => {
         setHasMore(data.page < data.totalPages);
       } catch (error) {
         console.error("Error fetching events:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -83,6 +86,7 @@ const Home = () => {
           />
         </div>
         <EventsList list={events} />
+        {loading && <p>Loading...</p>}
         {hasMore && (
           <button onClick={loadMore} className="home__btn-loadmore">
             Load More
