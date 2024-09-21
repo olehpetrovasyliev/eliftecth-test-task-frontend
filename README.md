@@ -33,7 +33,6 @@ This repository contains the frontend for an Event Management application. It se
 
    ```bash
    git clone https://github.com/olehpetrovasyliev/event-management-frontend.git
-   cd event-management-frontend
    ```
 2.Install the dependencies:
 ```bash
